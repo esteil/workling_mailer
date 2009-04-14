@@ -18,7 +18,7 @@ module AsynchMail
 
         def queue_mail(method, *parameters)
           mail = self.send "create_#{method}", *parameters
-          MailerWorker.send "asynch_deliver_mail", :class => self.name, :mail => mail
+          MailerWorker.send "asynch_deliver_mail", :class => self.name, :mail => mail.to_yaml
         end
       end
     end
